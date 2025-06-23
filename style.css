@@ -1,0 +1,334 @@
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+body {
+  margin: 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: #f4f7f6;
+  color: #333;
+}
+
+/* Main Container: Sidebar and Content Area */
+.main_container {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sidebar: fixed 250px, content takes remaining space */
+  grid-gap: 20px;
+}
+
+#projectList {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Dropdown Menu */
+#projectDropdown {
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  font-size: 0.95em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+#projectDropdown:focus {
+  outline: none;
+  border-color: #007BFF;
+}
+
+/* "Delete Project" Button, Next to Dropdown */
+#deleteSelectedProjectBtn {
+  margin-left: 5px;
+  padding: 8px 12px;
+  background: #df0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#deleteSelectedProjectBtn:hover {
+  background: #bb0000;
+}
+
+.project-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.project-item h3 {
+  font-size: 1.2em;
+  color: #007BFF;
+  margin-bottom: 5px;
+}
+.project-item p {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 5px;
+}
+.project-item button {
+  margin-top: 5px;
+  padding: 6px 12px;
+  font-size: 0.9em;
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.project-item button:hover {
+  background: #0056b3;
+}
+
+/* Form Section (PDF and 360° Image Upload) */
+#formular {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+#formular form {
+  margin-bottom: 15px;
+}
+#formular label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+#formular input[type="file"],
+#formular input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#formular button {
+  padding: 8px 16px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#formular button:hover {
+  background: #218838;
+}
+
+/* PDF Canvas */
+#pdfCanvas {
+  border: 1px solid #ccc;
+  background: #fff;
+  margin-top: 15px;
+  display: block;
+}
+
+/* Icon Container */
+#iconContainer {
+  position: absolute; /* Icons will be placed on the canvas */
+  top: 0;
+  left: 0;
+  pointer-events: none; /* Allow clicking on the canvas beneath the icons */
+}
+
+/* Icons */
+.pdf-icon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.2s ease;
+}
+.pdf-icon:hover {
+  transform: scale(1.1);
+}
+
+/* 360° Modal window */
+#modalOverlay {
+  display: none; /* Hidden first */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+#modalContent {
+  display: flex;
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+#modalSidebar {
+  width: 220px;
+  background: #f5f5f5;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+}
+#imageButtons{
+  display: flex;
+}
+#iconImageList button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 6px 8px;
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#iconImageList button:hover {
+  background: #0056b3;
+}
+#delImageList button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 6px 8px;
+  background: #c50000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#delImageList button:hover {
+  background: #a10000;
+}
+#threeContainer {
+  flex: 1;
+  position: relative;
+  background: #000;
+}
+#closeBtn {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: #ff3b3b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+#closeBtn:hover {
+  background: #c30f0f;
+}
+
+/* Title and Project Information */
+#selectedProject {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Project Creation Section */
+#createProject {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+#createProject h4 {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+#createProject form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#createProject form label {
+  font-weight: bold;
+  color: #555;
+}
+#createProject form input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+#createProject form button {
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#createProject form button:hover {
+  background-color: #0056b3;
+}
+
+/* PDF Delete Button */
+#deletePdfBtn{
+  color: #fff;
+  background-color: #df0000 !important;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+#deletePdfBtn:hover {
+  background-color: #bb0000 !important;
+}
+
+/* Project Loading Section */
+#loadProject {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+#loadProject h4 {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* PDF Bar (PDF buttons at the top) */
+#pdfBar button{
+  color: #fff;
+  background-color: #646464;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#pdfBar button:hover{
+  background-color: #757575;
+}
