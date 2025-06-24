@@ -4,7 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+define('BASE_DIR', __DIR__);
 include 'hilfsfunktionen.php';
 
 $dbName = "360cams";
@@ -75,7 +75,7 @@ function upload_pdf($conn, &$response){
         return;
     }
 
-    $uploadDir = "/var/www/html/uploads/pdfs/";
+    $uploadDir = BASE_DIR . '/uploads/pdfs/';
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 
@@ -110,7 +110,7 @@ function upload_img($conn, &$response){
         return;
     }
 
-    $uploadDir = "/var/www/html/uploads/360images/";
+    $uploadDir = BASE_DIR . '/uploads/360images/';
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 

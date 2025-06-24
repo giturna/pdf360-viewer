@@ -4,7 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+define('BASE_DIR', __DIR__);
 include 'hilfsfunktionen.php'; // If the database connection function exists
 
 $dbName = "360cams";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["iconID"]) && isset($_
     }
 
     // Directory where we will save on the server
-    $uploadDir = "/var/www/html/uploads/360images/";
+    $uploadDir = BASE_DIR . '/uploads/360images/';
 
     // Unique file name
     $newFileName = time() . "_" . basename($fileName);
