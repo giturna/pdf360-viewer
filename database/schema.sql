@@ -110,8 +110,8 @@ CREATE TABLE `Projects` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
-CREATE USER IF NOT EXISTS 'servicepb'@'%' IDENTIFIED WITH mysql_native_password BY 'ZcP_GEuV2BHx8drCRjwtpH!*';
-GRANT ALL PRIVILEGES ON 360cams.* TO 'servicepb'@'%';
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+GRANT ALL PRIVILEGES ON 360cams.* TO 'root'@'%';
 FLUSH PRIVILEGES;
 
 

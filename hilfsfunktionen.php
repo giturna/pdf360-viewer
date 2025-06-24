@@ -18,15 +18,15 @@ date_default_timezone_set('Europe/Berlin');
 function db_connect(): mysqli
 {
     $host = getenv('DB_HOST') ?: 'db';
-    $user = getenv('DB_USER') ?: 'servicepb';
-    $pass = getenv('DB_PASS') ?: '';
+    $user = getenv('DB_USER') ?: 'root';
+    $pass = getenv('DB_PASS') ?: 'root';
     $name = getenv('DB_NAME') ?: '360cams';
 
     $dbh = new mysqli($host, $user, $pass, $name);
 
     if ($dbh->connect_errno) {
         throw new RuntimeException(
-            'Veritabanı bağlantı hatası: ' . $dbh->connect_error,
+            'Database connection error: ' . $dbh->connect_error,
             $dbh->connect_errno
         );
     }
