@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 $envPath = __DIR__ . '/.env';
 if (file_exists($envPath)) {
-    $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
+    foreach (file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
         if (str_starts_with(trim($line), '#') || !str_contains($line, '=')) {
-            continue; // yorum satırı veya bozuk satır
+            continue;
         }
         [$key, $value] = array_map('trim', explode('=', $line, 2));
         putenv("$key=$value");
@@ -13,25 +14,24 @@ if (file_exists($envPath)) {
 
 date_default_timezone_set('Europe/Berlin');
 
-/* Establishes the connection to the database \$dbName and
-returns the database handler \$dbh. */
-function db_connect($dbName)
+
+function db_connect(): mysqli
 {
-    $servername = getenv('DB_SERVER');
-    $username = getenv('DB_USER');
-    $password = getenv('DB_PASS');
+    $host = getenv('DB_HOST') ?: 'db';
+    $user = getenv('DB_USER') ?: 'servicepb';
+    $pass = getenv('DB_PASS') ?: '';
+    $name = getenv('DB_NAME') ?: '360cams';
 
-    // Create connection
-    $dbh = new mysqli($servername, $username, $password, $dbName);
-    // Check connection
-    if ($dbh->connect_error) {
-        die("Connection failed: " . $dbh->connect_error);
-    }else{
-        return $dbh;
+    $dbh = new mysqli($host, $user, $pass, $name);
+
+    if ($dbh->connect_errno) {
+        throw new RuntimeException(
+            'Veritabanı bağlantı hatası: ' . $dbh->connect_error,
+            $dbh->connect_errno
+        );
     }
+
+    $dbh->set_charset('utf8mb4');
+    return $dbh;
 }
-
-
-
-
 ?>

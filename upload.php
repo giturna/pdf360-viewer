@@ -75,7 +75,7 @@ function upload_pdf($conn, &$response){
         return;
     }
 
-    $uploadDir = "/var/www/html3/uploads/pdfs/";
+    $uploadDir = "/var/www/html/uploads/pdfs/";
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 
@@ -110,7 +110,7 @@ function upload_img($conn, &$response){
         return;
     }
 
-    $uploadDir = "/var/www/html3/uploads/360images/";
+    $uploadDir = "/var/www/html/uploads/360images/";
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 

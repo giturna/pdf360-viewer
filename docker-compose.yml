@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: 360cams-web
+    ports:
+      - "8080:80"            # http://localhost:8080
+    volumes:
+      - ./:/var/www/html
+    env_file: .env
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.2
+    container_name: 360cams-db
+    restart: unless-stopped
+    env_file: .env
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+    ports:
+      #- "3306:3306"
+      - "3307:3306"
+
+  pma:                       # phpMyAdmin
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: 360cams-pma
+    depends_on:
+      - db
+    ports:
+      - "8081:80"            # http://localhost:8081
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+volumes:
+  db_data:

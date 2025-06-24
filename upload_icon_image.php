@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["iconID"]) && isset($_
     }
 
     // Directory where we will save on the server
-    $uploadDir = "/var/www/html3/uploads/360images/";
+    $uploadDir = "/var/www/html/uploads/360images/";
 
     // Unique file name
     $newFileName = time() . "_" . basename($fileName);
