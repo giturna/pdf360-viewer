@@ -32,6 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["iconID"]) && isset($_
 
     // Directory where we will save on the server
     $uploadDir = BASE_DIR . '/uploads/360images/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0775, true);          // recursive create
+    }
 
     // Unique file name
     $newFileName = time() . "_" . basename($fileName);
