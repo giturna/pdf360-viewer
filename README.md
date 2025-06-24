@@ -39,7 +39,7 @@ Upload project PDFs, drop interactive icons, attach 360-degree images, and explo
 
 ```bash
 # 1 – Clone
-git clone https://github.com/YOUR-USER/pdf360-viewer.git
+git clone https://github.com/giturna/pdf360-viewer.git
 cd pdf360-viewer
 
 # 2 – Build & start containers (first run ≈ 1–2 min)
@@ -58,7 +58,7 @@ Can’t use Docker? Run it on any server with Apache + PHP 8.1+ and MySQL 8:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR-USER/pdf360-viewer.git
+git clone https://github.com/giturna/pdf360-viewer.git
 cd pdf360-viewer
 
 # 1 – Copy example environment & edit DB creds
