@@ -33,19 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 echo json_encode($response);
 exit;
 
-
-function ensure_dir(string $path): void
-{
-    if (!is_dir($path)) {
-        if (!mkdir($path, 0775, true) && !is_dir($path)) {
-            throw new RuntimeException("Unable to create directory $path");
-        }
-        chown($path, 'www-data');
-        chgrp($path, 'www-data');
-    }
-}
-
-
 function create_project($conn, &$response){
     $projectName = $_POST['project_name'];
 
@@ -89,7 +76,6 @@ function upload_pdf($conn, &$response){
     }
 
     $uploadDir = BASE_DIR . '/uploads/pdfs/';
-    ensure_dir($uploadDir);
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 
@@ -125,7 +111,6 @@ function upload_img($conn, &$response){
     }
 
     $uploadDir = BASE_DIR . '/uploads/360images/';
-    ensure_dir($uploadDir);
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 
