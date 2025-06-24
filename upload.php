@@ -76,6 +76,9 @@ function upload_pdf($conn, &$response){
     }
 
     $uploadDir = BASE_DIR . '/uploads/pdfs/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0775, true);          // recursive create
+    }
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 
@@ -111,6 +114,9 @@ function upload_img($conn, &$response){
     }
 
     $uploadDir = BASE_DIR . '/uploads/360images/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0775, true);          // recursive create
+    }
     $newFileName = time() . "_" . basename($fileName);
     $destPath = $uploadDir . $newFileName;
 
