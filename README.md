@@ -15,7 +15,9 @@ Upload project PDFs, drop interactive icons, attach 360-degree images, and explo
 * **Docker-first workflow** – one command boots Apache + MySQL with schema
 * **Fallback LAMP compatibility** – run on any classic PHP/Apache host
 
-<em>(Add a GIF or screenshot section here)</em>
+![grafik](https://github.com/user-attachments/assets/750ddae8-04d8-49e0-b20e-f76489dafec6)
+![grafik](https://github.com/user-attachments/assets/dde6f3fb-774d-4235-8419-13dba65d1447)
+
 
 ---
 
